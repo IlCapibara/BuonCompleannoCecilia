@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buon Compleanno Cecilia</title>
+    <style>
+        body {
+            background-color: red;
+            color: yellow;
+            font-family: Comic Sans MS, sans-serif;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 50px;
+            text-shadow: 2px 2px blue;
+        }
+
+        #video {
+            margin-top: 20px;
+        }
+
+        .falling {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            z-index: 1000;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        .heart {
+            background: pink;
+            clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 82%, 18% 100%, 0% 35%);
+        }
+
+        .snow {
+            background: white;
+            border-radius: 50%;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-50px) rotate(0deg);
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .gif-wrapper {
+            margin-top: 20px;
+        }
+
+        .gif-wrapper img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Buon Compleanno Cecilia</h1>
+    <video id="video" controls width="480" autoplay>
+        <source src="video_tuo_che_balli.mp4" type="video/mp4">
+        Il tuo browser non supporta i video.
+    </video>
+
+    <div class="gif-wrapper">
+        <img src="https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif" alt="GIF Patetica">
+        <img src="https://media.giphy.com/media/l0HlRm8yGWjJ6fIhC/giphy.gif" alt="GIF Sorriso">
+    </div>
+
+    <script>
+        document.addEventListener('dblclick', function () {
+            const isHeart = Math.random() > 0.5;
+            const element = document.createElement('div');
+            element.className = `falling ${isHeart ? 'heart' : 'snow'}`;
+            
+            const size = Math.random() * 20 + 10;
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            element.style.left = `${Math.random() * 100}vw`;
+            element.style.animationDuration = `${Math.random() * 3 + 2}s`;
+
+            document.body.appendChild(element);
+
+            setTimeout(() => {
+                element.remove();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
